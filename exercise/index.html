@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CONquest: Event Planner</title>
-    <link href = "styles.css" rel="stylesheet"/>
+    <link href = "styles.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--GOOGLE FONTS-->
@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <!-- <include src="header.html" width="100%"></include> -->
@@ -38,30 +39,30 @@
     </header>
     <div class="register-form">
         <h1>Register</h1>
-        <hr>
+        <!-- <hr> -->
         <form>
             <!--name-->
             <div class="txt_field">
-                <input type = text id="name">
-                <label for="name">Name</label>
+                <input type=text name="name">
+                <label>Name</label>
             </div>
             <!--username-->
             <div class="txt_field">
-                <input type = text id="username">
-                <label for="username">Username</label>
+                <input type=text name="username">
+                <label>Username</label>
             </div>
             <!--email-->
             <div class="txt_field">
-                <input type = email id = "email">
-                <label for="email">Email</label>
+                <input type=email name="email">
+                <label>Email</label>
             </div>
             <!--password-->
             <div class="txt_field">
-                <input type = password id = "password">
-                <label for="password">Password</label>
+                <input type=password name="password">
+                <label>Password</label>
             </div>
-            <input type="submit" value="Sign Up">
-            <div class="signup-link">
+            <input name="submit" type="submit" value="Sign Up">
+            <div class="signup_link">
                 Have an account? <a href="#">Login Here</a>
             </div>
         </form>
