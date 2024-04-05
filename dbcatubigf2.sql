@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2024 at 03:26 AM
+-- Generation Time: Apr 05, 2024 at 04:19 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -24,80 +24,125 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbluseraccount`
+-- Table structure for table `tbladminaccount`
 --
 
-CREATE TABLE `tbluseraccount` (
-  `acctid` int(5) NOT NULL,
-  `emailadd` varchar(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `usertype` varchar(10) NOT NULL
+CREATE TABLE `tbladminaccount` (
+  `admin` int(5) NOT NULL,
+  `organizationID` int(10) NOT NULL,
+  `firstName` text NOT NULL,
+  `lastName` text NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `age` int(2) NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbluseraccount`
---
-
-INSERT INTO `tbluseraccount` (`acctid`, `emailadd`, `username`, `password`, `usertype`) VALUES
-(1, 'nina@gmail.com', 'ninx', '123456', ''),
-(2, 'maku@gmail.com', 'raku', '123456', ''),
-(3, 'a@gmail.com', 'c', '123456', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbluserprofile`
+-- Table structure for table `tbladminstatus`
 --
 
-CREATE TABLE `tbluserprofile` (
-  `userid` int(5) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `gender` varchar(10) NOT NULL
+CREATE TABLE `tbladminstatus` (
+  `adminID` int(11) NOT NULL,
+  `adminStatusID` int(11) NOT NULL,
+  `status` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tbluserprofile`
+-- Table structure for table `tblorganization`
 --
 
-INSERT INTO `tbluserprofile` (`userid`, `firstname`, `lastname`, `gender`) VALUES
-(1, 'nina', 'catubig', 'female'),
-(2, 'nina', 'catubig', 'female'),
-(3, 'marha', 'catis', 'male'),
-(4, 'a', 'b', 'female');
+CREATE TABLE `tblorganization` (
+  `organizationID` int(10) NOT NULL,
+  `organizationName` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbluseraccount`
+--
+
+CREATE TABLE `tbluseraccount` (
+  `userID` int(5) NOT NULL,
+  `firstName` text NOT NULL,
+  `lastName` text NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `age` int(2) NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `tbladminaccount`
+--
+ALTER TABLE `tbladminaccount`
+  ADD PRIMARY KEY (`admin`),
+  ADD KEY `orgID` (`organizationID`);
+
+--
+-- Indexes for table `tbladminstatus`
+--
+ALTER TABLE `tbladminstatus`
+  ADD PRIMARY KEY (`adminStatusID`);
+
+--
+-- Indexes for table `tblorganization`
+--
+ALTER TABLE `tblorganization`
+  ADD PRIMARY KEY (`organizationID`);
+
+--
 -- Indexes for table `tbluseraccount`
 --
 ALTER TABLE `tbluseraccount`
-  ADD PRIMARY KEY (`acctid`);
-
---
--- Indexes for table `tbluserprofile`
---
-ALTER TABLE `tbluserprofile`
-  ADD PRIMARY KEY (`userid`);
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `tbladminaccount`
+--
+ALTER TABLE `tbladminaccount`
+  MODIFY `admin` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbladminstatus`
+--
+ALTER TABLE `tbladminstatus`
+  MODIFY `adminStatusID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tblorganization`
+--
+ALTER TABLE `tblorganization`
+  MODIFY `organizationID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbluseraccount`
 --
 ALTER TABLE `tbluseraccount`
-  MODIFY `acctid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbluserprofile`
+-- Constraints for dumped tables
 --
-ALTER TABLE `tbluserprofile`
-  MODIFY `userid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for table `tbladminaccount`
+--
+ALTER TABLE `tbladminaccount`
+  ADD CONSTRAINT `orgID` FOREIGN KEY (`organizationID`) REFERENCES `tblorganization` (`organizationID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
